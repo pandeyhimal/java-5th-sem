@@ -1,0 +1,107 @@
+### **Different Approaches of `this` Keyword in Java**  
+
+The `this` keyword in Java refers to the **current instance of the class** and is used in different ways. Here are some common approaches:  
+
+---
+
+### **1. Referring to Instance Variables**
+Used when instance variable names are the same as method parameters.  
+```java
+class Example {
+    int num;
+    Example(int num) {
+        this.num = num; // Refers to instance variable
+    }
+}
+```
+
+---
+
+### **2. Calling Another Constructor (Constructor Chaining)**
+Used to call another constructor in the same class.  
+```java
+class Example {
+    Example() {
+        this(10); // Calls the parameterized constructor
+        System.out.println("Default Constructor");
+    }
+    Example(int x) {
+        System.out.println("Parameterized Constructor: " + x);
+    }
+    public static void main(String[] args) {
+        new Example();
+    }
+}
+```
+**Output:**  
+```
+Parameterized Constructor: 10  
+Default Constructor  
+```
+
+---
+
+### **3. Invoking Current Class Method**
+Used to call a method from another method in the same class.  
+```java
+class Example {
+    void show() {
+        System.out.println("Show Method");
+    }
+    void display() {
+        this.show(); // Calls show() method
+    }
+    public static void main(String[] args) {
+        new Example().display();
+    }
+}
+```
+
+---
+
+### **4. Returning Current Class Instance**
+Used to return the current class instance.  
+```java
+class Example {
+    Example getObject() {
+        return this; // Returns current class instance
+    }
+    void show() {
+        System.out.println("Returned Current Class Instance");
+    }
+    public static void main(String[] args) {
+        new Example().getObject().show();
+    }
+}
+```
+
+---
+
+### **5. Passing Current Instance to a Method**
+Used when passing the current object as a parameter.  
+```java
+class Example {
+    void display(Example obj) {
+        System.out.println("Method Received Current Instance");
+    }
+    void pass() {
+        display(this); // Passing current instance
+    }
+    public static void main(String[] args) {
+        new Example().pass();
+    }
+}
+```
+
+---
+
+### **Summary**
+| Usage | Purpose |
+|--------|---------|
+| `this.variable` | Refers to instance variable |
+| `this()` | Calls another constructor |
+| `this.method()` | Calls another method |
+| `return this;` | Returns current instance |
+| `method(this)` | Passes current instance |
+
+Would you like a real-world example to understand it better? 🚀
